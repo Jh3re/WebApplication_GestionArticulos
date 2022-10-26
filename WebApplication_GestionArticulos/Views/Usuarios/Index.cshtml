@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebApplication_GestionArticulos.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Lista de usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-4">
+        <h3>Lista de usuarios</h3>
+    </div>
+     <div class="col-3">
+         <a asp-action="Crear" class="btn btn-primary form-control">Crear usuario</a>
+    </div>   
+</div>
+
+<div>
+    @if(Model.Count()>0){
+        <table class="table table-striped border">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Direccion)
+                    </th>
+                    
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Direccion)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary text-white" asp-action="Editar" asp-route-id="@item.Id">Editar</a> 
+                        <a class="btn btn-secondary text-white" asp-action="Detalle" asp-route-id="@item.Id">Detalle</a> 
+                        <a class="btn btn-danger text-white" asp-action="Borrar" asp-route-id="@item.Id"
+                            onclick="return confirm('Esta seguro que quiere borrar el articulo?')">Borrar</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No hay articulos</p>
+    }
+</div>
+
+

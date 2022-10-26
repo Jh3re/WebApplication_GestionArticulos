@@ -1,0 +1,84 @@
+﻿@model WebApplication_GestionArticulos.ViewModels.ArticuloCategoriaVM
+@{
+    ViewData["Title"] = "Editar artículo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h3 class="text-center">Editar artículo</h3>
+<form method="post" asp-action="Editar">
+
+    <!--Importante para editar-->
+    <input type="hidden" asp-for="Articulo.Articulo_Id" />
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12 mt-4">
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Articulo.TituloArticulo"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Articulo.TituloArticulo" class="form-control" />
+                    <span asp-validation-for="Articulo.TituloArticulo" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Articulo.Descripcion"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Articulo.Descripcion" class="form-control" />
+                    <span asp-validation-for="Articulo.Descripcion" class="text-danger"></span>
+                </div>
+            </div>
+
+             <div class="row">
+                <div class="col-4">
+                    <label asp-for="Articulo.Calificacion"></label>
+                </div>
+                <div class="col-8">
+                    <input type="range" asp-for="Articulo.Calificacion" steps="0.01" min="0" max="5" class="form-control" />
+                    <span asp-validation-for="Articulo.Calificacion" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Articulo.Fecha"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Articulo.Fecha" class="form-control" />
+                    <span asp-validation-for="Articulo.Fecha" class="text-danger"></span>
+                </div>
+            </div>
+
+             <div class="row">
+                <div class="col-4">
+                    <label asp-for="Articulo.Categoria_Id"></label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(u => u.Articulo.Categoria_Id, Model.ListaCategorias, "--Lista de categorías--", 
+                    new {@class = "form-control"})
+                    <span asp-validation-for="Articulo.Categoria_Id" class="text-danger"></span>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    <div class="row mt-4">         
+         <div class="col-3">                  
+             <a asp-action="Index">Volver a lista</a>
+         </div>
+         <div class="col-5 offset-4">                  
+            <button type="submit" class="btn btn-primary form-control">Editar</button>
+                        &nbsp;
+         </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

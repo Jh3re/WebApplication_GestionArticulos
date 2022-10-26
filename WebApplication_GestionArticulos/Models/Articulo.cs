@@ -19,6 +19,7 @@ namespace WebApplication_GestionArticulos.Models
         public double Calificacion { get; set; }
         [DataType(DataType.Date)]
         public DateTime Fecha { get; set; }
+        public int Categoria_Id { get; set; }
         public Categoria Categoria { get; set; }
         public ICollection<ArticuloEtiqueta> ArticuloEtiqueta { get; set; }
 

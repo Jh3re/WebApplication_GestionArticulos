@@ -1,0 +1,75 @@
+﻿@model WebApplication_GestionArticulos.ViewModels.ArticuloEtiquetaVM
+@{
+    ViewData["Title"] = "Administrar etiqueta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h3 class="text-center">Administrar etiquetas para el articulo</h3>
+<div class="row">
+<form method="post" asp-action="AdministrarEtiquetas">
+
+    <!--Importante para editar-->
+    <input type="hidden" asp-for="Articulo.Articulo_Id" />
+    <input type="hidden" asp-for="ArticuloEtiqueta.Articulo_Id" />
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12 mt-4">
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Articulo.TituloArticulo"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Articulo.TituloArticulo" class="form-control" />
+                    <span asp-validation-for="Articulo.TituloArticulo" class="text-danger"></span>
+                </div>
+            </div>
+
+             <div class="row">
+                <div class="col-4">
+                    <label for="etiquetas">Etiquetas</label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(u => u.ArticuloEtiqueta.Etiqueta_Id, Model.listaEtiquetas, "--seleccionar etiquetas--", 
+                    new {@class = "form-control"})
+                    <span asp-validation-for="Articulo.Categoria_Id" class="text-danger"></span>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    <div class="row mt-4">         
+         <div class="col-3">                  
+             <a asp-action="Index">Volver a lista</a>
+         </div>
+         <div class="col-5 offset-4">                  
+            <button type="submit" class="btn btn-primary form-control">Asociar Etiqueta al articulo</button>
+                        &nbsp;
+         </div>
+    </div>
+</form>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <form method="post" action="EliminarEtiquetas">
+            <input type="hidden" asp-for="@Model.Articulo.Articulo_Id" />
+            <div class="row text-right">
+                <div class="col-12 text-right h4 text-primary">
+                    Etiquetas asociadas a este articulo
+                </div>
+            </div>
+            @foreach(var item in Model.listaArticuloEtiquetas)
+            {
+                <div class="row pb-2">
+                    <div class="col-8 text-right" style="font-size:24px">@item.Etiqueta.Titulo</div>
+                    <div class="col-4">
+                        <button asp-action="EliminarEtiquetas" type="submit" class="btn btn-danger form-control" asp-route-idEtiqueta="@item.Etiqueta_Id">Eliminar Etiqueta</button>
+                    </div>
+                </div>
+            }
+        </form>
+    </div>
+</div>

@@ -10,6 +10,9 @@ namespace WebApplication_GestionArticulos.Models
         [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "[NULL]")]
         public string Nombre { get; set; }
         public List<Articulo> Articulo { get; set; }
+        public bool Estado { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime FechaCreacion { get; set; }
 
     }
 }

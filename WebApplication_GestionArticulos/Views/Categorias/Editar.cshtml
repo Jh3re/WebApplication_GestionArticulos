@@ -1,0 +1,57 @@
+﻿@model WebApplication_GestionArticulos.Models.Categoria
+
+@{
+    ViewData["Title"] = "Editar categoria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center">Editar una categoria</h3>
+<hr />
+
+
+<form method="post" asp-action="Editar">
+    <input type="hidden" asp-for="Categoria_Id" />
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-12 mt-4">
+                    <div class="row">
+                        <div class="col-4">
+                            <label asp-for="Nombre"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-4">
+                            <label asp-for="Estado"></label>
+                        </div>
+                        <div class="col-8">
+                            <input class="form-check-input" asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-4">
+                            <label asp-for="FechaCreacion"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="FechaCreacion" class="form-control" />
+                            <span asp-validation-for="FechaCreacion" class="text-danger"></span>
+                        </div>
+                    </div>
+                   
+                </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-3">
+            <a asp-action="Index">Volver a la lista</a>
+        </div>
+        <div class="col-5 offset-4">
+            <button type="submit" class="btn btn-primary form-control">Editar</button>
+        </div>
+    </div>
+</form>
+

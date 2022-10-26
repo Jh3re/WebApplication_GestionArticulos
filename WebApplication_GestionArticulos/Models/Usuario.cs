@@ -6,6 +6,7 @@ namespace WebApplication_GestionArticulos.Models
     public class Usuario
     {
         public int Id { get; set; }
+        public string Nombre { get; set; }
         [EmailAddress(ErrorMessage ="Introduzca un email valido!")]
         public string Email { get; set; }
         [Display(Name ="Direccion de usuario")]
@@ -13,7 +14,7 @@ namespace WebApplication_GestionArticulos.Models
         [NotMapped]
         public int Edad { get; set; }
         [ForeignKey("DetalleUsuario")]
-        public int DetalleUsuario_Id { get; set; }
+        public int? DetalleUsuario_Id { get; set; }
         public DetalleUsuario DetalleUsuario { get; set; }
     }
 }
